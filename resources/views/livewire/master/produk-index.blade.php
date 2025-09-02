@@ -136,7 +136,7 @@
           @endif
         </div>
         <div>
-          <label class="block text-sm font-medium">Stok </label>
+          <label class="block text-sm font-medium">Stok Minimum</label>
           <input type="number" min="0" step="1" wire:model.live="stok_min" class="w-full rounded border px-3 py-2 text-right">
           @error('stok_min') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
         </div>
