@@ -14,6 +14,8 @@
       <nav class="text-sm space-x-3">
         <a href="{{ route('kategori.index') }}" class="text-blue-600 hover:underline">Kategori</a>
         <a href="{{ route('satuan.index') }}" class="text-blue-600 hover:underline">Satuan</a>
+        <a href="{{ route('produk.index') }}" class="text-blue-600 hover:underline">Produk</a>
+
       </nav>
     </header>
     {{ $slot ?? '' }}
