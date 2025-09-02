@@ -16,6 +16,7 @@
         <a href="{{ route('satuan.index') }}" class="text-blue-600 hover:underline">Satuan</a>
         <a href="{{ route('produk.index') }}" class="text-blue-600 hover:underline">Produk</a>
         <a href="{{ route('kasir.index') }}" class="text-blue-600 hover:underline">Kasir</a>
+        <a href="{{ route('master.pemasok') }}" class="text-blue-600 hover:underline">Pemasok</a>
         <a href="{{ route('pembelian.index') }}" class="text-blue-600 hover:underline">Restock</a>
 
 

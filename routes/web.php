@@ -7,7 +7,9 @@ use App\Livewire\Master\ProdukIndex;
 use App\Livewire\Kasir\TransaksiKasir;
 use App\Http\Controllers\KasirNotaController;
 use App\Livewire\Purchase\PembelianIndex;
+use App\Livewire\Master\PemasokIndex;
 
+Route::get('/master/pemasok', PemasokIndex::class)->name('master.pemasok');
 Route::get('/pembelian', PembelianIndex::class)->name('pembelian.index');
 Route::get('/kasir', TransaksiKasir::class)->name('kasir.index');
 Route::get('/kasir/nota/{penjualan}', [KasirNotaController::class, 'show'])
