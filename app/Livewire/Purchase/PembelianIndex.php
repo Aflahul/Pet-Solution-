@@ -44,6 +44,11 @@ class PembelianIndex extends Component
     public array $pemasokList = [];         // 👈 untuk dropdown
     public ?string $pemasok = null;         // tetap dipakai jika kamu masih simpan nama pemasok di kolom string
     public int $kasir_id = 1;
+    // QUICK-ADD PEMASOK (modal)
+    public bool $showSupplierForm = false;
+    public string $q_nama = '';
+    public ?string $q_kontak = null;
+    public ?string $q_alamat = null;
 
     // alert
     public bool $showAlert = false;
@@ -147,6 +152,42 @@ class PembelianIndex extends Component
     public function addBayar(int $n){ $this->bayar_tunai = max(0,$this->bayar_tunai + $n); $this->hitung(); }
     public function resetBayar(){ $this->bayar_tunai = 0; $this->hitung(); }
     public function toggleMetode(){ $this->metode_bayar = $this->metode_bayar==='TUNAI'?'NON_TUNAI':'TUNAI'; $this->hitung(); }
+    public function openQuickSupplier(): void
+    {
+        $this->resetQuickSupplier();
+        $this->showSupplierForm = true;
+    }
+
+    private function resetQuickSupplier(): void
+    {
+        $this->q_nama = '';
+        $this->q_kontak = null;
+        $this->q_alamat = null;
+    }
+
+    public function saveQuickSupplier(): void
+    {
+        $data = $this->validate([
+            'q_nama'   => 'required|min:2|max:150|unique:pemasok,nama',
+            'q_kontak' => 'nullable|max:100',
+            'q_alamat' => 'nullable|max:200',
+        ], [], ['q_nama'=>'Nama','q_kontak'=>'Kontak','q_alamat'=>'Alamat']);
+
+        $p = \App\Models\Pemasok::create([
+            'nama' => $data['q_nama'],
+            'kontak' => $data['q_kontak'] ?? null,
+            'alamat' => $data['q_alamat'] ?? null,
+        ]);
+
+        // set dropdown terpilih & refresh daftar
+        $this->pemasok_id = $p->id;
+        $this->pemasok    = $p->nama;
+        $this->pemasokList = \App\Models\Pemasok::orderBy('nama')->get(['id','nama'])->toArray();
+
+        $this->showSupplierForm = false;
+        session()->flash('ok','Pemasok baru ditambahkan.');
+    }
+
 
     private function hitung(): void
     {

@@ -65,6 +65,7 @@
         </div>
 
 
+
         <div class="mt-3 flex items-center justify-between flex-wrap gap-2">
             <div class="flex items-center gap-2">
                 <label class="text-sm">Pemasok</label>
@@ -74,18 +75,23 @@
                         <option value="{{ $p['id'] }}">{{ $p['nama'] }}</option>
                     @endforeach
                 </select>
+
+                {{-- NEW: quick add --}}
+                <button type="button" wire:click="openQuickSupplier" class="rounded border px-3 py-2 text-sm">+
+                    Tambah</button>
             </div>
+
             <div class="flex items-center gap-2">
                 <button wire:click="applySupplierPrices" @disabled(!$pemasok_id)
                     class="rounded border px-3 py-2 text-sm {{ $pemasok_id ? '' : 'opacity-50 cursor-not-allowed' }}">
                     Terapkan harga pemasok ke semua baris
                 </button>
-
                 <button wire:click="clearCart" class="rounded border px-3 py-2 text-sm">
                     Kosongkan Keranjang
                 </button>
             </div>
         </div>
+
 
     </div>
 
@@ -185,6 +191,45 @@
                 class="w-full rounded bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700">Simpan</button>
         </div>
     </div>
+    @if ($showSupplierForm)
+        <div class="fixed inset-0 bg-black/40 flex items-center justify-center">
+            <div class="w-full max-w-md rounded-xl bg-white p-5 shadow-xl">
+                <h2 class="mb-3 text-lg font-semibold">Tambah Pemasok</h2>
+
+                <div class="mb-3">
+                    <label class="block text-sm font-medium">Nama</label>
+                    <input type="text" wire:model.live="q_nama" class="w-full rounded border px-3 py-2">
+                    @error('q_nama')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="block text-sm font-medium">Kontak</label>
+                    <input type="text" wire:model.live="q_kontak" class="w-full rounded border px-3 py-2">
+                    @error('q_kontak')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium">Alamat</label>
+                    <textarea wire:model.live="q_alamat" class="w-full rounded border px-3 py-2"></textarea>
+                    @error('q_alamat')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="flex items-center justify-end gap-2">
+                    <button wire:click="$set('showSupplierForm', false)"
+                        class="rounded border px-3 py-2">Batal</button>
+                    <button wire:click="saveQuickSupplier"
+                        class="rounded bg-blue-600 px-4 py-2 text-white">Simpan</button>
+                </div>
+            </div>
+        </div>
+    @endif
+
 </div>
 
 <script>
