@@ -9,7 +9,11 @@ use App\Http\Controllers\KasirNotaController;
 use App\Livewire\Purchase\PembelianIndex;
 use App\Livewire\Master\PemasokIndex;
 use App\Livewire\Master\PemasokProdukMap;
+use App\Livewire\Purchase\PembelianList;
+use App\Livewire\Purchase\PembelianShow;
 
+Route::get('/pembelian/list', PembelianList::class)->name('pembelian.list');
+Route::get('/pembelian/{pembelian}', PembelianShow::class)->name('pembelian.show');
 Route::get('/master/pemasok/{pemasok}/produk', PemasokProdukMap::class)
      ->name('master.pemasok.produk');
 Route::get('/master/pemasok', PemasokIndex::class)->name('master.pemasok');

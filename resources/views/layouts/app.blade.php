@@ -18,6 +18,8 @@
         <a href="{{ route('kasir.index') }}" class="text-blue-600 hover:underline">Kasir</a>
         <a href="{{ route('master.pemasok') }}" class="text-blue-600 hover:underline">Pemasok</a>
         <a href="{{ route('pembelian.index') }}" class="text-blue-600 hover:underline">Restock</a>
+        <a href="{{ route('pembelian.list') }}" class="text-blue-600 hover:underline">Daftar Pembelian</a>
+
 
 
       </nav>
