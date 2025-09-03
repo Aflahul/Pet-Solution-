@@ -11,7 +11,11 @@ use App\Livewire\Master\PemasokIndex;
 use App\Livewire\Master\PemasokProdukMap;
 use App\Livewire\Purchase\PembelianList;
 use App\Livewire\Purchase\PembelianShow;
+use App\Livewire\Sales\PenjualanList;
+use App\Livewire\Sales\PenjualanShow;
 
+Route::get('/penjualan/list', PenjualanList::class)->name('penjualan.list');
+Route::get('/penjualan/{penjualan}', PenjualanShow::class)->name('penjualan.show');
 Route::get('/pembelian/list', PembelianList::class)->name('pembelian.list');
 Route::get('/pembelian/{pembelian}', PembelianShow::class)->name('pembelian.show');
 Route::get('/master/pemasok/{pemasok}/produk', PemasokProdukMap::class)
