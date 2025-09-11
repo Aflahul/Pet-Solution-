@@ -1,61 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🐾 Aplikasi Kasir – Pet Solution Makassar
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi kasir ini berbasis web yang dikembangkan khusus untuk kebutuhan **UMKM Pet Solution (Petshop) di Makassar**.  
+Sistem ini dirancang dengan fokus pada **kecepatan transaksi**, **pencarian produk instan**, dan **laporan harian cepat** sehingga mendukung operasional kasir.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 Tujuan Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Mempercepat proses transaksi dari **scan barcode → cetak struk** dengan latensi minimal.  
+- Menyediakan **backoffice CRUD** untuk produk, kategori, stok, dan pengguna.  
+- Menyediakan **laporan harian/bulanan** yang cepat tanpa beban agregasi berat real-time.  
+- Tetap sederhana, offline-tolerant, dan bisa berjalan di lingkungan lokal (PC kasir + printer thermal).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Fitur Utama
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🔐 Admin / Owner
+- Kelola produk, kategori, dan stok.  
+- Kelola pengguna (role: Owner, Kasir).  
+- Lihat riwayat transaksi & cetak ulang struk.  
+- Akses laporan omzet harian, bulanan, top produk, dan stok menipis.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🧾 Kasir
+- Halaman POS cepat (Inertia + Vue 3) dengan **scan barcode instan**.  
+- Keranjang dengan diskon, qty, pajak.  
+- Checkout dengan cetak struk thermal (58/80mm).  
+- Hotkeys untuk mempercepat input (Enter, +/–, Del, F2, F4).  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📊 Laporan
+- Ringkasan omzet harian (≤ 200 ms query).  
+- Rekap transaksi & jumlah item.  
+- Arsip laporan dalam format PDF / ekspor CSV.  
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠️ Teknologi
 
-### Premium Partners
+- **Backend**: [Laravel 10/11](https://laravel.com/) + MySQL (InnoDB)  
+- **Frontend POS**: Inertia + Vue 3 + Tailwind (PWA + IndexedDB + Service Worker)  
+- **Frontend Backoffice**: Blade + Tailwind (Livewire opsional)  
+- **Cetak**: window.print() + CSS, opsi QZ Tray/ESC-POS untuk kecepatan maksimum  
+- **Tools**: PHP 8.2+, XAMPP, Visual Studio Code  
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 📸 Screenshots
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Halaman POS
+![POS](docs/screenshots/pos.png)
 
-## Code of Conduct
+### Manajemen Produk
+![Produk](docs/screenshots/produk.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Riwayat Transaksi
+![Transaksi](docs/screenshots/transaksi.png)
 
-## Security Vulnerabilities
+### Laporan Harian
+![Laporan](docs/screenshots/laporan.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📌 Roadmap Pengembangan
+
+- **V1.0**: POS cepat + backoffice CRUD + laporan ringkas.  
+- **V1.1**: Integrasi cetak QZ Tray/ESC-POS default, manajemen shift kasir.  
+- **V1.2**: PWA offline penuh, multi-device kasir.  
+- **V2.0**: Multi-outlet, hosting terpusat, integrasi pembayaran non-tunai/QRIS.  
+
+---
+
+
+## 📜 Lisensi
+
+Proyek ini menggunakan lisensi [MIT](https://opensource.org/licenses/MIT).
